@@ -25,7 +25,7 @@ let package = Package(
     dependencies: [
         // .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
-        .package(url: "https://github.com/swiftlang/swift-format.git", from: "602.0.0"),
+        .package(url: "https://github.com/swiftlang/swift-format.git", "509.0.0"..<"602.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.5"),
         .package(url: "https://github.com/dominicegginton/Spinner", from: "2.0.0"),
