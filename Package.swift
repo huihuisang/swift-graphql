@@ -14,9 +14,7 @@ let package = Package(
         // SwiftGraphQL
         .library(name: "SwiftGraphQL", targets: ["SwiftGraphQL"]),
         .library(name: "SwiftGraphQLClient", targets: ["SwiftGraphQLClient"]),
-        .library(name: "SwiftGraphQLCodegen", targets: ["SwiftGraphQLCodegen"]),
-        // CLI
-        .executable( name: "swift-graphql", targets: ["SwiftGraphQLCLI"]),
+        
         // Utilities
         .library(name: "GraphQL", targets: ["GraphQL"]),
         .library(name: "GraphQLAST", targets: ["GraphQLAST"]),
@@ -24,13 +22,8 @@ let package = Package(
     ],
     dependencies: [
         // .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "1.0.0"),
-        .package(url: "https://github.com/swiftlang/swift-format.git", "509.0.0"..<"602.0.0"),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/daltoniam/Starscream.git", from: "4.0.5"),
-        .package(url: "https://github.com/dominicegginton/Spinner", from: "2.0.0"),
-        .package(url: "https://github.com/JohnSundell/Files", from: "4.0.0"),
-        .package(url: "https://github.com/jpsim/Yams.git", from: "5.0.0"),
     ],
     targets: [
         // Spec
@@ -64,50 +57,23 @@ let package = Package(
             ],
             path: "Sources/SwiftGraphQLClient"
         ),
-        .target(
-            name: "SwiftGraphQLCodegen",
-            dependencies: [
-                "GraphQLAST",
-                .product(name: "SwiftFormat", package: "swift-format"),
-                .product(name: "SwiftFormatConfiguration", package: "swift-format"),
-                "SwiftGraphQLUtils"
-            ],
-            path: "Sources/SwiftGraphQLCodegen"
-        ),
         .target(name: "SwiftGraphQLUtils", dependencies: [], path: "Sources/SwiftGraphQLUtils"),
-        
-        // Executables
-        
-        .executableTarget(
-            name: "SwiftGraphQLCLI",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "Files",
-                "Spinner",
-                "SwiftGraphQLCodegen",
-                "Yams",
-            ],
-            path: "Sources/SwiftGraphQLCLI"
-        ),
         
         // Tests
         
         .testTarget(
             name: "SwiftGraphQLTests",
             dependencies: [
-                "Files",
                 "GraphQL",
                 "GraphQLAST",
                 "GraphQLWebSocket",
-                "SwiftGraphQLCodegen",
                 "SwiftGraphQL",
                 "SwiftGraphQLClient",
                 "SwiftGraphQLUtils",
             ],
             path: "Tests",
             exclude: [
-                "SwiftGraphQLCodegenTests/Integration/schema.json",
-                "SwiftGraphQLCodegenTests/Integration/swiftgraphql.yml",
+                "SwiftGraphQLCodegenTests"
             ]
         )
     ]
